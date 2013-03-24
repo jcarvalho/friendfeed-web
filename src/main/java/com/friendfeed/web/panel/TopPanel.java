@@ -56,6 +56,8 @@ public class TopPanel extends Panel {
                 return FriendFeedApplication.getCurrentUser() != null;
             }
         });
+
+        add(new SignInPanel("signInPanel"));
     }
 
 }
