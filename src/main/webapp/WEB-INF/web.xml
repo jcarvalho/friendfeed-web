@@ -12,6 +12,10 @@
 			<param-name>applicationClassName</param-name>
 			<param-value>com.friendfeed.web.FriendFeedApplication</param-value>
 		</init-param>
+		<init-param>
+			<param-name>ignorePaths</param-name>
+			<param-value>assets</param-value>
+		</init-param>
 	</filter>
 
 	<filter-mapping>
