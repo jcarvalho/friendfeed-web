@@ -1,6 +1,7 @@
 package com.friendfeed.web;
 
 import org.apache.wicket.Page;
+import org.apache.wicket.Session;
 import org.apache.wicket.core.util.file.WebApplicationPath;
 import org.apache.wicket.protocol.http.WebApplication;
 
@@ -28,7 +29,11 @@ public class FriendFeedApplication extends WebApplication {
     }
 
     public static User getCurrentUser() {
-        return null;
+        return (User) Session.get().getAttribute("USER_ATTRIBUTE");
+    }
+
+    public static void setCurrentUser(User user) {
+        Session.get().setAttribute("USER_ATTRIBUTE", user);
     }
 
 }
