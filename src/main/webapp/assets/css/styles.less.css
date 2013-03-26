@@ -7,3 +7,9 @@ form.form-signin {
 	margin-left: auto;
 	margin-right: auto;
 }
+
+.feedbackError {
+	width: 500px;
+	margin-left: auto;
+	margin-right: auto;
+}

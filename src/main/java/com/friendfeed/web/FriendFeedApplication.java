@@ -16,7 +16,7 @@ public class FriendFeedApplication extends WebApplication {
     protected void init() {
         super.init();
 
-        getResourceSettings().getResourceFinders().clear();
+        // getResourceSettings().getResourceFinders().clear();
         getResourceSettings().getResourceFinders().add(new WebApplicationPath(getServletContext(), "/"));
 
         getSecuritySettings().setAuthorizationStrategy(new FriendFeedAuthorizationStrategy());

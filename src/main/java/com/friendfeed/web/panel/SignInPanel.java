@@ -6,18 +6,13 @@ import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.util.value.ValueMap;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import pt.ist.fenixframework.Atomic;
-
+import com.friendfeed.core.application.Authenticate;
 import com.friendfeed.core.domain.User;
 import com.friendfeed.web.FriendFeedApplication;
 import com.friendfeed.web.pages.FriendFeedHome;
 
 public class SignInPanel extends Panel {
-
-    private static final Logger logger = LoggerFactory.getLogger(SignInPanel.class);
 
     private static final long serialVersionUID = -3480067697256907945L;
 
@@ -43,15 +38,15 @@ public class SignInPanel extends Panel {
             add(new PasswordTextField(PASSWORD, new PropertyModel<String>(properties, PASSWORD)).setRequired(false));
         }
 
-        @Atomic
         @Override
         public final void onSubmit() {
-            logger.info("Got user '{}' with password '{}'", getUsername(), getPassword());
-            User user = new User();
-            user.setUsername(getUsername());
-            user.setEmail("blah@blah.com");
-            user.setPassword("blah");
+            if (getUsername() == null) {
+                error("Username cannot be null");
+                return;
+            }
+            User user = Authenticate.login(getUsername(), getPassword());
             FriendFeedApplication.setCurrentUser(user);
+
             setResponsePage(FriendFeedHome.class);
         }
 

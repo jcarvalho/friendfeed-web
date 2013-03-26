@@ -6,8 +6,6 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.Panel;
 
-import pt.ist.fenixframework.Atomic;
-
 import com.friendfeed.core.domain.User;
 import com.friendfeed.web.FriendFeedApplication;
 import com.friendfeed.web.pages.FriendFeedHome;
@@ -23,12 +21,8 @@ public class TopPanel extends Panel {
 
             private static final long serialVersionUID = -114236994503293264L;
 
-            @Atomic
             @Override
             public void onClick() {
-                User user = new User();
-                user.setUsername("Utilizador" + System.nanoTime());
-                FriendFeedApplication.setCurrentUser(user);
                 setResponsePage(FriendFeedHome.class);
             }
         });
