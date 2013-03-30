@@ -1,9 +1,7 @@
 package com.friendfeed.web.panel;
 
-import org.apache.wicket.Session;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.Panel;
 
 import com.friendfeed.core.domain.User;
@@ -26,14 +24,9 @@ public class TopPanel extends Panel {
             }
         });
 
-        add(new Link<Void>("logoutLink") {
+        add(new WebMarkupContainer("logoutLink") {
 
             private static final long serialVersionUID = 1929981792291846295L;
-
-            @Override
-            public void onClick() {
-                Session.get().invalidateNow();
-            }
 
             @Override
             public boolean isVisible() {
