@@ -1,5 +1,9 @@
 package com.friendfeed.web;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+
 import org.apache.wicket.Page;
 import org.apache.wicket.Session;
 import org.apache.wicket.core.util.file.WebApplicationPath;
@@ -7,7 +11,7 @@ import org.apache.wicket.protocol.http.WebApplication;
 
 import com.friendfeed.core.domain.User;
 import com.friendfeed.web.pages.FriendFeedHome;
-import com.friendfeed.web.pages.SignUpPage;
+import com.friendfeed.web.pages.MountPage;
 import com.friendfeed.web.security.FriendFeedAuthorizationStrategy;
 import com.friendfeed.web.security.FriendFeedComponentInstantiationListener;
 
@@ -23,7 +27,9 @@ public class FriendFeedApplication extends WebApplication {
         getSecuritySettings().setAuthorizationStrategy(new FriendFeedAuthorizationStrategy());
         getSecuritySettings().setUnauthorizedComponentInstantiationListener(new FriendFeedComponentInstantiationListener());
 
-        mountPage("/signup", SignUpPage.class);
+        for (Entry<Class<? extends Page>, String> page : pages.entrySet()) {
+            mountPage(page.getValue(), page.getKey());
+        }
     }
 
     @Override
@@ -37,6 +43,12 @@ public class FriendFeedApplication extends WebApplication {
 
     public static void setCurrentUser(User user) {
         Session.get().setAttribute("USER_ATTRIBUTE", user);
+    }
+
+    private static final Map<Class<? extends Page>, String> pages = new HashMap<>();
+
+    public static void addPage(Class<? extends Page> page, MountPage mount) {
+        pages.put(page, mount.value());
     }
 
 }
