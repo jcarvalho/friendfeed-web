@@ -7,6 +7,7 @@ import org.apache.wicket.protocol.http.WebApplication;
 
 import com.friendfeed.core.domain.User;
 import com.friendfeed.web.pages.FriendFeedHome;
+import com.friendfeed.web.pages.SignUpPage;
 import com.friendfeed.web.security.FriendFeedAuthorizationStrategy;
 import com.friendfeed.web.security.FriendFeedComponentInstantiationListener;
 
@@ -16,11 +17,13 @@ public class FriendFeedApplication extends WebApplication {
     protected void init() {
         super.init();
 
-        // getResourceSettings().getResourceFinders().clear();
+        getResourceSettings().getResourceFinders().clear();
         getResourceSettings().getResourceFinders().add(new WebApplicationPath(getServletContext(), "/"));
 
         getSecuritySettings().setAuthorizationStrategy(new FriendFeedAuthorizationStrategy());
         getSecuritySettings().setUnauthorizedComponentInstantiationListener(new FriendFeedComponentInstantiationListener());
+
+        mountPage("/signup", SignUpPage.class);
     }
 
     @Override

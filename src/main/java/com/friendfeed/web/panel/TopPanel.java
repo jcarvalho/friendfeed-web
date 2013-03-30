@@ -8,7 +8,6 @@ import org.apache.wicket.markup.html.panel.Panel;
 
 import com.friendfeed.core.domain.User;
 import com.friendfeed.web.FriendFeedApplication;
-import com.friendfeed.web.pages.FriendFeedHome;
 
 public class TopPanel extends Panel {
 
@@ -17,15 +16,6 @@ public class TopPanel extends Panel {
     public TopPanel(String id, User user) {
         super(id);
         add(new Label("username", user == null ? "" : "Welcome " + user.getUsername()));
-        add(new Link<Void>("createUserLink") {
-
-            private static final long serialVersionUID = -114236994503293264L;
-
-            @Override
-            public void onClick() {
-                setResponsePage(FriendFeedHome.class);
-            }
-        });
 
         add(new WebMarkupContainer("loginLink") {
             private static final long serialVersionUID = -1058430501543689942L;
