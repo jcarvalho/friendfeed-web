@@ -10,6 +10,7 @@ import org.apache.wicket.util.value.ValueMap;
 import com.friendfeed.core.application.Authenticate;
 import com.friendfeed.core.domain.User;
 import com.friendfeed.web.FriendFeedApplication;
+import com.friendfeed.web.component.StaticImage;
 import com.friendfeed.web.pages.FriendFeedHome;
 
 public class SignInPanel extends Panel {
@@ -19,6 +20,10 @@ public class SignInPanel extends Panel {
     public SignInPanel(String id) {
         super(id);
 
+        add(new StaticImage("twitterLogo", "/img/twitter-bird-white-on-blue.png"));
+        add(new StaticImage("facebookLogo", "/img/f_logo.png"));
+        add(new StaticImage("googleLogo", "/img/google_search.png"));
+        add(new StaticImage("twitterSignIn", "/img/sign-in-with-twitter-gray.png"));
         add(new SignInForm("signInForm"));
     }
 
@@ -34,7 +39,8 @@ public class SignInPanel extends Panel {
         public SignInForm(final String id) {
             super(id);
 
-            add(new TextField<String>(USERNAME, new PropertyModel<String>(properties, USERNAME)).setRequired(false));
+            add(new TextField<String>(USERNAME, new PropertyModel<String>(properties, USERNAME)).setType(String.class)
+                    .setRequired(false));
             add(new PasswordTextField(PASSWORD, new PropertyModel<String>(properties, PASSWORD)).setRequired(false));
         }
 
