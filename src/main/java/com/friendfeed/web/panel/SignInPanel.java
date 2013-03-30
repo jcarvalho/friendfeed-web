@@ -51,8 +51,12 @@ public class SignInPanel extends Panel {
                 return;
             }
             User user = Authenticate.login(getUsername(), getPassword());
-            FriendFeedApplication.setCurrentUser(user);
+            if (user == null) {
+                error("Incorrect login data");
+                return;
+            }
 
+            FriendFeedApplication.setCurrentUser(user);
             setResponsePage(FriendFeedHome.class);
         }
 

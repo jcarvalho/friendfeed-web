@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:wicket="http://wicket.apache.org">
 <head>
@@ -6,14 +7,63 @@
 
 </head>
 <body>
-    <span wicket:id="user">[Top Panel]</span>
-    
-	
+	<span wicket:id="user">[Top Panel]</span>
+
+
 	<div class="container">
 		<span wicket:id="feedbackError" />
+		<div class="hero-unit">
+			<h1>Sign up for FriendFeed</h1>
+			<br />
+			<p>FriendFeed is the best way</p>
+		</div>
 
-		<h1>Sign up for FriendFeed</h1>
-		
+		<div class="row">
+			<div class="span8">
+				<form class="form-horizontal" wicket:id="signUpForm">
+					<div class="control-group">
+						<label class="control-label" for="name">Name</label>
+						<div class="controls">
+							<input type="text" id="name" placeholder="Name" wicket:id="name" />
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="screenName">Screen Name</label>
+						<div class="controls">
+							<input type="text" id="screenName" placeholder="Screen Name" wicket:id="screenName" />
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="email">Email</label>
+						<div class="controls">
+							<input type="email" id="email" placeholder="Email" wicket:id="email" />
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="password">Password</label>
+						<div class="controls">
+							<input type="password" id="password" placeholder="Password" wicket:id="password" />
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="passwordConfirm">Confirm Password</label>
+						<div class="controls">
+							<input type="password" id="passwordConfirm" placeholder="Confirm Password" wicket:id="passwordConfirm" />
+						</div>
+					</div>
+					<div class="control-group">
+						<div class="controls">
+							<button type="submit" class="btn">Sign Up</button>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="span4">
+				<blockquote>
+					Lorem Ipsum
+				</blockquote>
+			</div>
+		</div>
 	</div>
 </body>
 </html>
