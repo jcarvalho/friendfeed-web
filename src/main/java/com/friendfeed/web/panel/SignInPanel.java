@@ -1,7 +1,7 @@
 package com.friendfeed.web.panel;
 
-import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.PasswordTextField;
+import org.apache.wicket.markup.html.form.StatelessForm;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.PropertyModel;
@@ -27,7 +27,7 @@ public class SignInPanel extends Panel {
         add(new SignInForm("signInForm"));
     }
 
-    public final class SignInForm extends Form<Void> {
+    public final class SignInForm extends StatelessForm<Void> {
 
         private static final long serialVersionUID = 7634349439380603856L;
 

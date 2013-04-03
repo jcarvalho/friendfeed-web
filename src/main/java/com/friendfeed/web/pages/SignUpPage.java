@@ -3,10 +3,10 @@ package com.friendfeed.web.pages;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.OnChangeAjaxBehavior;
 import org.apache.wicket.markup.html.form.EmailTextField;
-import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.RequiredTextField;
+import org.apache.wicket.markup.html.form.StatelessForm;
 import org.apache.wicket.markup.html.form.validation.EqualPasswordInputValidator;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
@@ -27,7 +27,7 @@ public class SignUpPage extends FriendFeedPage {
         add(new SignUpForm("signUpForm", new CompoundPropertyModel<SignUpBean>(new SignUpBean())));
     }
 
-    private static class SignUpForm extends Form<SignUpBean> {
+    private static class SignUpForm extends StatelessForm<SignUpBean> {
 
         private static final long serialVersionUID = -814100904777031887L;
 
