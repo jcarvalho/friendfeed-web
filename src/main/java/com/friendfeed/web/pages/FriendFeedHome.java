@@ -22,7 +22,7 @@ public class FriendFeedHome extends FriendFeedPage {
 
             @Override
             protected void populateItem(ListItem<User> item) {
-                item.add(new Label("label", item.getModel().getObject().getUsername()));
+                item.add(new Label("label", item.getModel().getObject().getScreenName()));
             }
         });
     }

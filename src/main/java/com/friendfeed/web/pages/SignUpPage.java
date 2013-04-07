@@ -68,7 +68,7 @@ public class SignUpPage extends FriendFeedPage {
         protected void onSubmit() {
             super.onSubmit();
             SignUpBean bean = (SignUpBean) getDefaultModelObject();
-            boolean success = Authenticate.createUser(bean.getName(), bean.getScreenName(), bean.getEmail(), bean.getPassword());
+            boolean success = Authenticate.createUser(bean.name, bean.screenName, bean.email, bean.password);
             if (success) {
                 success("User created successfully. Check your email to activate your account.");
                 setResponsePage(FriendFeedHome.class);
@@ -80,24 +80,7 @@ public class SignUpPage extends FriendFeedPage {
 
     static class SignUpBean implements IClusterable {
         private static final long serialVersionUID = 7190286912086616503L;
-
         String name, screenName, email, password, passwordConfirm;
-
-        public String getName() {
-            return name;
-        }
-
-        public String getScreenName() {
-            return screenName;
-        }
-
-        public String getEmail() {
-            return email;
-        }
-
-        public String getPassword() {
-            return password;
-        }
     }
 
 }

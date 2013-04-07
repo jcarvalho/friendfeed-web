@@ -13,7 +13,7 @@ public class TopPanel extends Panel {
 
     public TopPanel(String id, User user) {
         super(id);
-        add(new Label("username", user == null ? "" : "Welcome " + user.getUsername()));
+        add(new Label("username", user == null ? "" : "Welcome " + user.getScreenName()));
 
         add(new WebMarkupContainer("loginLink") {
             private static final long serialVersionUID = -1058430501543689942L;
