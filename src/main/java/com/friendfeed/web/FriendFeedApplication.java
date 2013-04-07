@@ -12,8 +12,8 @@ import org.apache.wicket.protocol.http.WebApplication;
 import com.friendfeed.core.domain.User;
 import com.friendfeed.web.pages.FriendFeedHome;
 import com.friendfeed.web.pages.MountPage;
+import com.friendfeed.web.pages.UnauthorizedPage;
 import com.friendfeed.web.security.FriendFeedAuthorizationStrategy;
-import com.friendfeed.web.security.FriendFeedComponentInstantiationListener;
 
 public class FriendFeedApplication extends WebApplication {
 
@@ -22,9 +22,10 @@ public class FriendFeedApplication extends WebApplication {
         super.init();
 
         getResourceSettings().getResourceFinders().add(new WebApplicationPath(getServletContext(), "/"));
+        getApplicationSettings().setAccessDeniedPage(UnauthorizedPage.class);
 
         getSecuritySettings().setAuthorizationStrategy(new FriendFeedAuthorizationStrategy());
-        getSecuritySettings().setUnauthorizedComponentInstantiationListener(new FriendFeedComponentInstantiationListener());
+        getSecuritySettings().setEnforceMounts(true);
 
         for (Entry<Class<? extends Page>, String> page : pages.entrySet()) {
             mountPage(page.getValue(), page.getKey());

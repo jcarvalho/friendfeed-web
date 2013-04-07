@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 
 import com.friendfeed.web.FriendFeedApplication;
 import com.friendfeed.web.pages.MountPage;
+import com.friendfeed.web.security.AuthorizationSupport;
 
 @HandlesTypes(MountPage.class)
 public class AnnotationInitializer implements ServletContainerInitializer {
@@ -33,6 +34,8 @@ public class AnnotationInitializer implements ServletContainerInitializer {
                 MountPage mount = clazz.getAnnotation(MountPage.class);
 
                 logger.debug("Adding page {} with path '{}'", clazz.getName(), mount.value());
+
+                AuthorizationSupport.registerNewAuthorizationClass(mount.authorization());
 
                 @SuppressWarnings("unchecked")
                 Class<? extends Page> page = (Class<? extends Page>) clazz;
