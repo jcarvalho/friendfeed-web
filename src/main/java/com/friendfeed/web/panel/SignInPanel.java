@@ -5,7 +5,6 @@ import org.apache.wicket.markup.html.form.StatelessForm;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.PropertyModel;
-import org.apache.wicket.util.value.ValueMap;
 
 import com.friendfeed.core.application.Authenticate;
 import com.friendfeed.core.domain.User;
@@ -31,44 +30,32 @@ public class SignInPanel extends Panel {
 
         private static final long serialVersionUID = 7634349439380603856L;
 
-        private static final String USERNAME = "username";
-        private static final String PASSWORD = "password";
-
-        private final ValueMap properties = new ValueMap();
+        private String username;
+        private String password;
 
         public SignInForm(final String id) {
             super(id);
 
-            add(new TextField<String>(USERNAME, new PropertyModel<String>(properties, USERNAME)).setType(String.class)
-                    .setRequired(false));
-            add(new PasswordTextField(PASSWORD, new PropertyModel<String>(properties, PASSWORD)).setRequired(false));
+            add(new TextField<String>("username", new PropertyModel<String>(this, "username"), String.class).setRequired(false));
+            add(new PasswordTextField("password", new PropertyModel<String>(this, "password")).setRequired(false));
         }
 
         @Override
         public final void onSubmit() {
-            if (getUsername() == null) {
+            if (username == null) {
                 error("Username cannot be null");
                 return;
             }
-            User user = Authenticate.login(getUsername(), getPassword());
+            User user = Authenticate.login(username, password);
             if (user == null) {
                 error("Incorrect login data");
                 return;
             }
 
             FriendFeedSession.get().setUser(user);
+            getSession().bind();
+            error("User set: " + user);
             setResponsePage(FriendFeedHome.class);
-        }
-
-        /**
-         * @return
-         */
-        private String getUsername() {
-            return properties.getString(USERNAME);
-        }
-
-        private String getPassword() {
-            return properties.getString(PASSWORD);
         }
 
     }

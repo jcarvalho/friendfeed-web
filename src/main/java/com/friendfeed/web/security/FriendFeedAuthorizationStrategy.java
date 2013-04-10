@@ -1,10 +1,9 @@
 package com.friendfeed.web.security;
 
 import org.apache.wicket.Component;
-import org.apache.wicket.Session;
 import org.apache.wicket.authorization.Action;
 import org.apache.wicket.authorization.IAuthorizationStrategy;
-import org.apache.wicket.authorization.UnauthorizedInstantiationException;
+import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.request.component.IRequestableComponent;
 
 import com.friendfeed.core.security.Authorization;
@@ -18,21 +17,19 @@ public class FriendFeedAuthorizationStrategy implements IAuthorizationStrategy {
         MountPage mount = componentClass.getAnnotation(MountPage.class);
         if (mount != null) {
             Authorization authorization = AuthorizationSupport.getAuthorizationForClass(mount.authorization());
-            if (!authorization.isUserAuthorized(FriendFeedSession.get().getUser())) {
-                unauthorized(componentClass);
-            }
+            return authorization.isUserAuthorized(FriendFeedSession.get().getUser());
         }
         return true;
     }
 
-    private void unauthorized(Class<? extends IRequestableComponent> clazz) {
-        Session.get().invalidate();
-        throw new UnauthorizedInstantiationException(clazz);
-    }
-
     @Override
     public boolean isActionAuthorized(Component component, Action action) {
+        if (action.equals(Component.RENDER)) {
+            if (component instanceof BookmarkablePageLink<?>) {
+                BookmarkablePageLink<?> link = (BookmarkablePageLink<?>) component;
+                return isInstantiationAuthorized(link.getPageClass());
+            }
+        }
         return true;
     }
-
 }
