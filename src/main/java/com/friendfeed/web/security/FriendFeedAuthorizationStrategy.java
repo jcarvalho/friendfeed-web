@@ -8,15 +8,14 @@ import org.apache.wicket.request.component.IRequestableComponent;
 
 import com.friendfeed.core.security.Authorization;
 import com.friendfeed.web.FriendFeedSession;
-import com.friendfeed.web.pages.MountPage;
 
 public class FriendFeedAuthorizationStrategy implements IAuthorizationStrategy {
 
     @Override
     public <T extends IRequestableComponent> boolean isInstantiationAuthorized(Class<T> componentClass) {
-        MountPage mount = componentClass.getAnnotation(MountPage.class);
-        if (mount != null) {
-            Authorization authorization = AuthorizationSupport.getAuthorizationForClass(mount.authorization());
+        RequiresAuthorization auth = componentClass.getAnnotation(RequiresAuthorization.class);
+        if (auth != null) {
+            Authorization authorization = AuthorizationSupport.getAuthorizationForClass(auth.authorization());
             return authorization.isUserAuthorized(FriendFeedSession.get().getUser());
         }
         return true;
