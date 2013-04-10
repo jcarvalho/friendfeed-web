@@ -8,8 +8,9 @@ import org.apache.wicket.Page;
 import org.apache.wicket.Session;
 import org.apache.wicket.core.util.file.WebApplicationPath;
 import org.apache.wicket.protocol.http.WebApplication;
+import org.apache.wicket.request.Request;
+import org.apache.wicket.request.Response;
 
-import com.friendfeed.core.domain.User;
 import com.friendfeed.web.pages.FriendFeedHome;
 import com.friendfeed.web.pages.MountPage;
 import com.friendfeed.web.pages.UnauthorizedPage;
@@ -37,13 +38,14 @@ public class FriendFeedApplication extends WebApplication {
         return FriendFeedHome.class;
     }
 
-    public static User getCurrentUser() {
-        return (User) Session.get().getAttribute("USER_ATTRIBUTE");
+    @Override
+    public Session newSession(Request request, Response response) {
+        return new FriendFeedSession(request);
     }
 
-    public static void setCurrentUser(User user) {
-        Session.get().setAttribute("USER_ATTRIBUTE", user);
-    }
+    /*
+     * Static stuff
+     */
 
     private static final Map<Class<? extends Page>, String> pages = new HashMap<>();
 

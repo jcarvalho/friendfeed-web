@@ -9,7 +9,7 @@ import org.apache.wicket.util.value.ValueMap;
 
 import com.friendfeed.core.application.Authenticate;
 import com.friendfeed.core.domain.User;
-import com.friendfeed.web.FriendFeedApplication;
+import com.friendfeed.web.FriendFeedSession;
 import com.friendfeed.web.component.StaticImage;
 import com.friendfeed.web.pages.FriendFeedHome;
 
@@ -56,7 +56,7 @@ public class SignInPanel extends Panel {
                 return;
             }
 
-            FriendFeedApplication.setCurrentUser(user);
+            FriendFeedSession.get().setUser(user);
             setResponsePage(FriendFeedHome.class);
         }
 
