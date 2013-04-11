@@ -35,7 +35,7 @@ public class AnnotationInitializer implements ServletContainerInitializer {
                 MountPage mount = clazz.getAnnotation(MountPage.class);
                 RequiresAuthorization auth = clazz.getAnnotation(RequiresAuthorization.class);
 
-                logger.debug("Adding page {} with path '{}'", clazz.getName(), mount.value());
+                logger.debug("Adding page {} with path '{}'", clazz.getName(), mount.path());
 
                 if (auth != null) {
                     AuthorizationSupport.registerNewAuthorizationClass(auth.authorization());

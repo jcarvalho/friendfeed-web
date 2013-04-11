@@ -16,7 +16,7 @@ import org.apache.wicket.validation.validator.StringValidator;
 
 import com.friendfeed.core.application.Authenticate;
 
-@MountPage("signup")
+@MountPage(path = "/signup")
 public class SignUpPage extends FriendFeedPage {
 
     private static final String PASSWORD_PATTERN = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%!_-]).{6,20})";

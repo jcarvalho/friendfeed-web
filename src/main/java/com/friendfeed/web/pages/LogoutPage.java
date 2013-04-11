@@ -5,7 +5,7 @@ import org.apache.wicket.Session;
 import com.friendfeed.core.security.Authorizations.LoggedIn;
 import com.friendfeed.web.security.RequiresAuthorization;
 
-@MountPage(value = "logout")
+@MountPage(path = "logout")
 @RequiresAuthorization(authorization = LoggedIn.class)
 public class LogoutPage extends FriendFeedPage {
 

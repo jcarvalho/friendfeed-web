@@ -50,7 +50,7 @@ public class FriendFeedApplication extends WebApplication {
     private static final Map<Class<? extends Page>, String> pages = new HashMap<>();
 
     public static void addPage(Class<? extends Page> page, MountPage mount) {
-        pages.put(page, mount.value());
+        pages.put(page, mount.path());
     }
 
 }
