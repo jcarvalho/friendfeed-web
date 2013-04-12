@@ -1,5 +1,6 @@
 package com.friendfeed.web.pages;
 
+import org.apache.wicket.RestartResponseAtInterceptPageException;
 import org.apache.wicket.feedback.ErrorLevelFeedbackMessageFilter;
 import org.apache.wicket.feedback.FeedbackMessage;
 
@@ -13,6 +14,10 @@ public abstract class FriendFeedPage extends BasePage {
     public FriendFeedPage() {
         add(new TopPanel("user"));
         add(new FriendFeedbackPanel("feedbackError", new ErrorLevelFeedbackMessageFilter(FeedbackMessage.WARNING)));
+    }
+
+    protected void notFound() {
+        throw new RestartResponseAtInterceptPageException(NotFoundPage.class);
     }
 
 }
