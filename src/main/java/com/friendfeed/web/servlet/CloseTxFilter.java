@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import pt.ist.fenixframework.Atomic;
+import pt.ist.fenixframework.Atomic.TxMode;
 import pt.ist.fenixframework.FenixFramework;
 
 @WebFilter("/*")
@@ -32,7 +33,7 @@ public class CloseTxFilter implements Filter {
     }
 
     @Override
-    @Atomic(readOnly = true)
+    @Atomic(mode = TxMode.READ)
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException,
             ServletException {
         chain.doFilter(request, response);
