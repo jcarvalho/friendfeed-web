@@ -1,9 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:wicket="http://wicket.apache.org">
 <head>
 <title>FriendFeed - Manage Users</title>
 
+<wicket:head>
+	<style>
+div.wicket-aa {
+	font-family: "Lucida Grande", "Lucida Sans Unicode", Tahoma, Verdana;
+	font-size: 12px;
+	background-color: white;
+	border-width: 1px;
+	border-color: #cccccc;
+	border-style: solid;
+	padding: 2px;
+	margin: 1px 0 0 0;
+	text-align: left;
+}
+
+div.wicket-aa ul {
+	list-style: none;
+	padding: 2px;
+	margin: 0;
+}
+
+div.wicket-aa ul li.selected {
+	background-color: #FFFF00;
+	padding: 2px;
+	margin: 0;
+}
+</style>
+</wicket:head>
 </head>
 <body>
 	<span wicket:id="user">[Top Panel]</span>
@@ -23,6 +51,10 @@
 		<div class="row">
 			<div class="span4">
 				<h3>Search User</h3>
+				<form wicket:id="searchUsersForm">
+					<input type="text" wicket:id="usernameSearch"
+						placeholder="Username" />
+				</form>
 			</div>
 			<div class="span4">
 				<h3>Add User</h3>
