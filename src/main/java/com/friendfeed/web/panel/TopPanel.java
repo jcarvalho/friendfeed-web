@@ -8,6 +8,7 @@ import org.apache.wicket.model.PropertyModel;
 
 import com.friendfeed.web.FriendFeedSession;
 import com.friendfeed.web.pages.LogoutPage;
+import com.friendfeed.web.pages.manager.ManageUsersPage;
 
 public class TopPanel extends Panel {
 
@@ -26,6 +27,7 @@ public class TopPanel extends Panel {
             }
         });
 
+        add(new BookmarkablePageLink<ManageUsersPage>("manageUsersLink", ManageUsersPage.class));
         add(new BookmarkablePageLink<LogoutPage>("logoutLink", LogoutPage.class));
 
         add(new SignInPanel("signInPanel"));
